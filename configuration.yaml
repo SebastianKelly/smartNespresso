@@ -1,13 +1,38 @@
 #this is what to enter in your configuration file for HomeAssistant
 
+#make sure you have these in your home assistant
+
+mqtt:
+  broker: yourbroker_address
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+sensor:
+  - platform: template
+    sensors:
+      alarm_time:
+        friendly_name: 'Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_slider.alarmhour") | int, states("input_slider.alarmminutes") | int) }}'
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'time_utc'
+
 switch:
   - platform: mqtt
     name: "Coffee Machine"
+    state_topic: "dev/coffeeMachine"
     command_topic: "dev/coffeeMachine"
     qos: 0
     payload_on: "onn"
 
-input_slider: 
+
+input_slider:
+
   alarmhour:
     name: Hour
     icon: mdi:timer
@@ -15,29 +40,29 @@ input_slider:
     min: 0
     max: 23
     step: 1
+
   alarmminutes:
     name: Minutes
     icon: mdi:timer
     initial: 0
     min: 0
-    max: 55
+    max: 59
     step: 5
 
-input_boolean: 
+
+
+input_boolean:
   alarmstatus:
-    name: Wake Me Up
+    name: Alarm Status
     initial: off
-    icon: mdi:alarm-check
+    icon: mdi:timer
+
   alarmweekday:
     name: Weekdays Only
     initial: off
     icon: mdi:calendar
 
-sensor: 
-  platform: template
-  sensors:
-    alarm_time:
-      friendly_name: 'Time'
-      value_template: '{{ states.input_slider.alarmhour.state }}:{% if states.input_slider.alarmminutes.state|length == 1 %}0{% endif %}{{ states.input_slider.alarmminutes.state }}'
-      
-      
+  morningcoffee:
+    name: Coffee
+    initial: off
+    icon: mdi:coffee-outline
