@@ -34,3 +34,4 @@
       state: 'on'
     - service: switch.turn_on
       entity_id: switch.coffee_machine
+ 
