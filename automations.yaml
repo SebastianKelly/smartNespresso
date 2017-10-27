@@ -27,12 +27,8 @@
           - condition: state
             entity_id: input_boolean.alarmweekday
             state: 'off'
-        
+
   action:
-    - service: notify.notify
-      data_template:
-        message: 'Good morning. Time to Wake Up!'
-        title: ''
     - condition: state
       entity_id: input_boolean.morningcoffee
       state: 'on'
