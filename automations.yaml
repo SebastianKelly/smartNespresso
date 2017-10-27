@@ -1,1 +1,40 @@
 #add this to your automations file in HomeAssistant
+
+- alias: 'Wake Me Up'
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.alarm_time.state }}'
+  condition:
+    condition: and
+    conditions:
+      -  condition: state
+         entity_id: input_boolean.alarmstatus
+         state: 'on'
+      - condition: or
+        conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.alarmweekday
+                state: 'on'
+              - condition: time
+                weekday:
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'off'
+        
+  action:
+    - service: notify.notify
+      data_template:
+        message: 'Good morning. Time to Wake Up!'
+        title: ''
+    - condition: state
+      entity_id: input_boolean.morningcoffee
+      state: 'on'
+    - service: switch.turn_on
+      entity_id: switch.coffee_machine
