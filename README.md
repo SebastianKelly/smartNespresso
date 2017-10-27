@@ -1,5 +1,5 @@
 # smartNespresso
-Code for smart Nespresso machine using HomeAssistant
+Code for smart Nespresso Alarm using HomeAssistant
 
 Using the HomeAssistant open source software, following code, a ESP8266 NodeMCU, and a Nespresso Coffee Machine; this code will allow you to create an alarm clock which includes your coffee machine.
 
@@ -13,5 +13,7 @@ Here, is a video of it working with Alexa,
 https://youtu.be/yc8MYt-RAN0
 
 ![Alt text](nespresso_homeAssistant.png?raw=true "Smart Nespresso Machine")
+...
+
 ![Alt text](homeAssistant.png?raw=true "HomeAssistant Alarm Control")
 
