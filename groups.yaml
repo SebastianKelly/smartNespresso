@@ -1,1 +1,20 @@
   #add this to your groups file in HomeAssistant
+  
+###Views###
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.alarmclock
+
+
+###groups###
+alarmclock:
+  name: Wake Me Up
+  entities:
+    - input_boolean.alarmstatus
+    - sensor.alarm_time
+    - input_slider.alarmhour
+    - input_slider.alarmminutes
+    - input_boolean.alarmweekday
+    - input_boolean.morningcoffee
