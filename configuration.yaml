@@ -1,1 +1,43 @@
 #this is what to enter in your configuration file for HomeAssistant
+
+switch:
+  - platform: mqtt
+    name: "Coffee Machine"
+    command_topic: "dev/coffeeMachine"
+    qos: 0
+    payload_on: "onn"
+
+input_slider: 
+  alarmhour:
+    name: Hour
+    icon: mdi:timer
+    initial: 9
+    min: 0
+    max: 23
+    step: 1
+  alarmminutes:
+    name: Minutes
+    icon: mdi:timer
+    initial: 0
+    min: 0
+    max: 55
+    step: 5
+
+input_boolean: 
+  alarmstatus:
+    name: Wake Me Up
+    initial: off
+    icon: mdi:alarm-check
+  alarmweekday:
+    name: Weekdays Only
+    initial: off
+    icon: mdi:calendar
+
+sensor: 
+  platform: template
+  sensors:
+    alarm_time:
+      friendly_name: 'Time'
+      value_template: '{{ states.input_slider.alarmhour.state }}:{% if states.input_slider.alarmminutes.state|length == 1 %}0{% endif %}{{ states.input_slider.alarmminutes.state }}'
+      
+      
