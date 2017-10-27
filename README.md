@@ -12,5 +12,6 @@ https://www.instructables.com/id/Smart-Nespresso-Machine-Using-HomeAssistant-Ale
 Here, is a video of it working with Alexa,
 https://youtu.be/yc8MYt-RAN0
 
-![Alt text](homeAssistant.png?raw=true "Optional Title")
-![Alt text](/relative/path/to/homeAssistant.png?raw=true "Optional Title")
+![Alt text](nespresso_homeAssistant.png?raw=true "Smart Nespresso Machine")
+![Alt text](homeAssistant.png?raw=true "HomeAssistant Alarm Control")
+
